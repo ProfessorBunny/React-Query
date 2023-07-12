@@ -6,12 +6,12 @@ const Form = () => {
   const [newItemName, setNewItemName] = useState("");
 
   const { mutate: createTask, isLoading } = useMutation({
-    mutationFn: () => customFetch.post("/", { title: "New Task" }),
+    mutationFn: (task) => customFetch.post("/", { title: task }),
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createTask();
+    createTask(newItemName);
   };
   return (
     <form onSubmit={handleSubmit}>
