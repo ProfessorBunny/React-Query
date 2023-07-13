@@ -13,6 +13,15 @@ const SingleItem = ({ item }) => {
       toast.success("Task Status Updated");
     },
   });
+  const { mutate: deleteItem } = useMutation({
+    mutationFn: (taskId) => {
+      return customFetch.delete(`/${taskId}`);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["tasks"] });
+      toast.success("Task Removed Successfully");
+    },
+  });
   return (
     <div className="single-item">
       <input
@@ -31,7 +40,7 @@ const SingleItem = ({ item }) => {
       <button
         className="btn remove-btn"
         type="button"
-        onClick={() => console.log("delete task")}
+        onClick={() => deleteItem(item.id)}
       >
         delete
       </button>
