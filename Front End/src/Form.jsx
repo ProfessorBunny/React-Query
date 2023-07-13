@@ -1,12 +1,17 @@
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import customFetch from "./utils";
+import { toast } from "react-toastify";
 
 const Form = () => {
   const [newItemName, setNewItemName] = useState("");
 
   const { mutate: createTask, isLoading } = useMutation({
     mutationFn: (task) => customFetch.post("/", { title: task }),
+    onSuccess: () => {},
+    onError: (error) => {
+      toast.error(error.response.data.msg);
+    },
   });
 
   const handleSubmit = (e) => {
