@@ -10,6 +10,7 @@ const SingleItem = ({ item }) => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tasks"] });
+      toast.success("Task Status Updated");
     },
   });
   return (
