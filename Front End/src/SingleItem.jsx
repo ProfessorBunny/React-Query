@@ -1,10 +1,15 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import customFetch from "./utils";
+import { toast } from "react-toastify";
 
 const SingleItem = ({ item }) => {
+  const queryClient = useQueryClient();
   const { mutate: editTask } = useMutation({
     mutationFn: ({ taskId, isDone }) => {
       return customFetch.patch(`/${taskId}`, { isDone: isDone });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["tasks"] });
     },
   });
   return (
