@@ -1,5 +1,5 @@
 import SingleItem from "./SingleItem";
-import useFetchTasks from "./queryCustomHooks";
+import { useFetchTasks } from "./queryCustomHooks";
 const Items = () => {
   const { isLoading, data, error, isError } = useFetchTasks();
   if (isLoading) {

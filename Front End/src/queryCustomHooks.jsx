@@ -10,6 +10,7 @@ export const useFetchTasks = () => {
       return data;
     },
   });
+
   return { isLoading, data, error, isError };
 };
 
@@ -31,7 +32,7 @@ export const useUpdateTask = () => {
 
 export const useDeleteTask = () => {
   const queryClient = useQueryClient();
-  const { mutate: deleteItem, isLoading: deleteTaskLoading } = useMutation({
+  const { mutate: deleteTask, isLoading: deleteTaskLoading } = useMutation({
     mutationFn: (taskId) => {
       return customFetch.delete(`/${taskId}`);
     },
@@ -40,5 +41,5 @@ export const useDeleteTask = () => {
       toast.success("Task Removed Successfully");
     },
   });
-  return { deleteItem, deleteTaskLoading };
+  return { deleteTask, deleteTaskLoading };
 };
