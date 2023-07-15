@@ -1,15 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
 import SingleItem from "./SingleItem";
-import customFetch from "./utils";
-const Items = ({ items }) => {
-  const { isLoading, data, error, isError } = useQuery({
-    queryKey: ["tasks"],
-    queryFn: async () => {
-      const { data } = await customFetch.get("/");
-      return data;
-    },
-  });
-
+import { useFetchData } from "./queryFetchCustomHook";
+const Items = () => {
+  const { isLoading, data, error, isError } = useFetchData();
   if (isLoading) {
     return <p style={{ marginTop: "1rem" }}>Loading....</p>;
   }
@@ -18,7 +10,7 @@ const Items = ({ items }) => {
       <p style={{ marginTop: "1rem" }}>
         {error.message}
         <br />
-        {error.response.data}{" "}
+        {error.response.data}
       </p>
     );
   }
