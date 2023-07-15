@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import customFetch from "./utils";
-export const useFetchData = () => {
+export const useFetchTasks = () => {
   const { isLoading, data, error, isError } = useQuery({
     queryKey: ["tasks"],
     queryFn: async () => {

@@ -1,7 +1,7 @@
 import SingleItem from "./SingleItem";
-import { useFetchData } from "./queryFetchCustomHook";
+import useFetchTasks from "./queryCustomHooks";
 const Items = () => {
-  const { isLoading, data, error, isError } = useFetchData();
+  const { isLoading, data, error, isError } = useFetchTasks();
   if (isLoading) {
     return <p style={{ marginTop: "1rem" }}>Loading....</p>;
   }
